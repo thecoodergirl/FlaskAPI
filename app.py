@@ -24,11 +24,11 @@ def add_user():
     if request.method=='POST':
         first_name=request.form['first_name']
         last_name=request.form['last_name']
-        dob=request.form['dob']
+        date_of_birth=request.form['date_of_birth']
         amount_due=request.form['amount_due']
         con=sql.connect("Assignment3.db")
         cur=con.cursor()
-        cur.execute("insert into student(first_name,last_name,dob,amount_due) values (?,?,?,?)",(first_name,last_name,dob,amount_due))
+        cur.execute("insert into student(first_name,last_name,date_of_birth,amount_due) values (?,?,?,?)",(first_name,last_name,date_of_birth,amount_due))
         con.commit()
         flash('Student Added','success')
         return redirect(url_for("index"))
@@ -39,11 +39,11 @@ def edit_user(student_id):
     if request.method=='POST':
         first_name=request.form['first_name']
         last_name=request.form['last_name']
-        dob=request.form['dob']
+        date_of_birth=request.form['date_of_birth']
         amount_due=request.form['amount_due']
         con=sql.connect("Assignment3.db")
         cur=con.cursor()
-        cur.execute("update student set first_name=?,last_name=?,dob=?,amount_due=? where student_id=?",(first_name,last_name,dob,amount_due,student_id))
+        cur.execute("update student set first_name=?,last_name=?,date_of_birth=?,amount_due=? where student_id=?",(first_name,last_name,date_of_birth,amount_due,student_id))
         con.commit()
         flash('Student Updated','success')
         return redirect(url_for("index"))
