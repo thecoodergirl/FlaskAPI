@@ -11,7 +11,7 @@ import sqlite3 as sql
 
 
 #connect to SQLite
-con = sql.connect('assignment3.db')
+con = sql.connect('Assignment3.db')
 
 #Create a Connection
 cur = con.cursor()
