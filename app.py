@@ -12,7 +12,7 @@ app.secret_key='admin123'
 @app.route("/")
 @app.route("/index")
 def index():
-    con=sql.connect("assignment3.db")
+    con=sql.connect("Assignment3.db")
     con.row_factory=sql.Row
     cur=con.cursor()
     cur.execute("select * from student")
@@ -26,7 +26,7 @@ def add_user():
         last_name=request.form['last_name']
         dob=request.form['dob']
         amount_due=request.form['amount_due']
-        con=sql.connect("assignment3.db")
+        con=sql.connect("Assignment3.db")
         cur=con.cursor()
         cur.execute("insert into student(first_name,last_name,dob,amount_due) values (?,?,?,?)",(first_name,last_name,dob,amount_due))
         con.commit()
@@ -41,13 +41,13 @@ def edit_user(student_id):
         last_name=request.form['last_name']
         dob=request.form['dob']
         amount_due=request.form['amount_due']
-        con=sql.connect("assignment3.db")
+        con=sql.connect("Assignment3.db")
         cur=con.cursor()
         cur.execute("update student set first_name=?,last_name=?,dob=?,amount_due=? where student_id=?",(first_name,last_name,dob,amount_due,student_id))
         con.commit()
         flash('Student Updated','success')
         return redirect(url_for("index"))
-    con=sql.connect("assignment3.db")
+    con=sql.connect("Assignment3.db")
     con.row_factory=sql.Row
     cur=con.cursor()
     cur.execute("select * from student where student_id=?",(student_id,))
@@ -56,7 +56,7 @@ def edit_user(student_id):
     
 @app.route("/delete_user/<string:student_id>",methods=['GET'])
 def delete_user(student_id):
-    con=sql.connect("assignment3.db")
+    con=sql.connect("Assignment3.db")
     cur=con.cursor()
     cur.execute("delete from student where student_id=?",(student_id,))
     con.commit()
